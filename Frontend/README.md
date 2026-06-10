@@ -1,16 +1,74 @@
-# React + Vite
+# Job Portal Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite frontend application for the Job Portal platform. This provides a fast development experience with HMR (Hot Module Replacement) and ESLint integration.
 
-Currently, two official plugins are available:
+## 📦 Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```
+Frontend/
+├── src/
+│   ├── components/       # Reusable React components
+│   ├── pages/           # Page components
+│   ├── assets/          # Images and static files
+│   ├── App.jsx          # Main App component
+│   ├── App.css          # App styles
+│   ├── main.jsx         # Entry point
+│   └── index.css        # Global styles
+├── public/              # Static public assets
+├── vite.config.js       # Vite configuration
+├── eslint.config.js     # ESLint configuration
+├── index.html           # HTML template
+└── package.json
+```
 
-## React Compiler
+## 🚀 Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Install dependencies:
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+2. Start development server:
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Build for production:
+```bash
+npm run build
+```
+
+4. Preview production build:
+```bash
+npm run preview
+```
+
+## 🛠 Build Tools
+
+- **Vite** - Next generation frontend tooling
+- **React** - UI library
+- **ESLint** - Code quality tool
+
+## ⚙️ Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## 📝 Features
+
+- ⚡ Fast refresh with HMR
+- 📦 Optimized builds
+- 🔍 ESLint integration
+- 🎨 CSS support
+
+## 🔗 API Integration
+
+The frontend connects to the backend API running on `http://localhost:5000`. Update the API base URL in your environment or API configuration file if needed.
+
+## 📖 Resources
+
+- [Vite Documentation](https://vitejs.dev)
+- [React Documentation](https://react.dev)
+- [ESLint Documentation](https://eslint.org)

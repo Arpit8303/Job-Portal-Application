@@ -27,6 +27,18 @@ password:{
 location:{
     type:String,
     default:"India"
+},
+skills: {
+    type: [String],
+    default: []
+},
+resumeUrl: {
+    type: String,
+    default: ""
+},
+monthlyGoal: {
+    type: Number,
+    default: 20
 }
 },
 {timestamps:true})

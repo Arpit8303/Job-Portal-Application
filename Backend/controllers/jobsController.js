@@ -157,6 +157,7 @@ export const jobStatsController = async (req, res, next) => {
       pending: stats.find((s) => s._id === "pending")?.count || 0,
       reject: stats.find((s) => s._id === "reject")?.count || 0,
       interview: stats.find((s) => s._id === "interview")?.count || 0,
+      offer: stats.find((s) => s._id === "offer")?.count || 0,
     };
 
     //monthly yearly stats

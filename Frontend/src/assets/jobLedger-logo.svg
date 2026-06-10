@@ -1,0 +1,35 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+  <!-- Briefcase body -->
+  <path d="M 40 80 L 40 140 Q 40 150 50 150 L 150 150 Q 160 150 160 140 L 160 80 Z" fill="#0052CC" opacity="0.9"/>
+  
+  <!-- Briefcase top -->
+  <rect x="40" y="70" width="120" height="15" rx="8" fill="#0052CC"/>
+  
+  <!-- Briefcase handle -->
+  <path d="M 60 70 Q 60 50 100 50 Q 140 50 140 70" stroke="#0052CC" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Location pin -->
+  <g transform="translate(130, 50)">
+    <circle cx="0" cy="0" r="12" fill="#FF9500"/>
+    <circle cx="0" cy="0" r="8" fill="#FFFFFF"/>
+    <circle cx="0" cy="0" r="4" fill="#FF9500"/>
+  </g>
+  
+  <!-- Star accent -->
+  <g transform="translate(150, 35)">
+    <polygon points="0,-8 2,-2 8,-2 3,2 5,8 0,4 -5,8 -3,2 -8,-2 -2,-2" fill="#FF9500"/>
+  </g>
+  
+  <!-- Chart bars inside briefcase -->
+  <g transform="translate(70, 100)">
+    <rect x="-15" y="10" width="8" height="20" fill="#FF5722"/>
+    <rect x="-2" y="5" width="8" height="25" fill="#4CAF50"/>
+    <rect x="11" y="0" width="8" height="30" fill="#FFC107"/>
+  </g>
+  
+  <!-- Magnifying glass -->
+  <g transform="translate(145, 130)">
+    <circle cx="0" cy="0" r="12" fill="none" stroke="#FF5722" stroke-width="2.5"/>
+    <line x1="8" y1="8" x2="16" y2="16" stroke="#FF5722" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+</svg>

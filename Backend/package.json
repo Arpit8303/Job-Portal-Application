@@ -1,7 +1,7 @@
 {
-  "name": "job-portal",
+  "name": "jobLedger-backend",
   "version": "1.0.0",
-  "description": "job portal project",
+  "description": "JobLedger - Modern MERN recruitment platform",
   "main": "serevr.js",
   "type": "module",
   "scripts": {
