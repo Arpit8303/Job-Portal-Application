@@ -1,5 +1,17 @@
 import userModel from "../models/userModel.js";
 
+export const getUserController = async (req, res, next) => {
+  try {
+    const user = await userModel.findById(req.user.userId).select("-password");
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+    res.status(200).json({ success: true, user });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const updateUserController = async (req, res, next) => {
   const { name, email, lastName, location, skills, resumeUrl, monthlyGoal } = req.body;
   if (!name || !email || !lastName || !location) {

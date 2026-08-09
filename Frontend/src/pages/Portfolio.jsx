@@ -34,7 +34,7 @@ const Portfolio = () => {
         <div className="portfolio-avatar">
           {user.name.charAt(0).toUpperCase()}
         </div>
-        <h1>{user.name} {user.lastName}</h1>
+        <h1>{user.name}</h1>
         <p className="portfolio-location"><MdLocationOn /> {user.location}</p>
         <div className="portfolio-contact">
           <a href={`mailto:${user.email}`}><MdEmail /> Contact Me</a>

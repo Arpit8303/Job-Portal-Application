@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
-import { MdDashboard, MdWork, MdPerson, MdLogout, MdMenu, MdClose, MdDarkMode, MdLightMode } from 'react-icons/md';
+import { MdDashboard, MdWork, MdPerson, MdLogout, MdMenu, MdClose, MdDarkMode, MdLightMode, MdSearch } from 'react-icons/md';
 import logoSvg from '../assets/jobLedger-logo.svg';
+import NotificationBell from './NotificationBell';
 
 const Layout = () => {
   const { auth, logoutUser, theme, toggleTheme } = useAppContext();
@@ -17,6 +18,7 @@ const Layout = () => {
   const navLinks = [
     { path: '/dashboard', label: 'Dashboard', icon: <MdDashboard /> },
     { path: '/jobs', label: 'Jobs', icon: <MdWork /> },
+    { path: '/search', label: 'Search', icon: <MdSearch /> },
     { path: '/profile', label: 'Profile', icon: <MdPerson /> },
   ];
 
@@ -65,6 +67,7 @@ const Layout = () => {
             <button className="btn btn--ghost" onClick={toggleTheme} style={{ padding: '8px', fontSize: '20px' }} title="Toggle Theme">
               {theme === 'light' ? <MdDarkMode /> : <MdLightMode />}
             </button>
+            <NotificationBell />
             <div className="topbar__avatar">
               {auth.user?.name?.charAt(0)?.toUpperCase() || 'U'}
             </div>

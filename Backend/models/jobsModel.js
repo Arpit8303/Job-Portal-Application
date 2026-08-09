@@ -30,8 +30,20 @@ const jobSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
+    // Phase 7 — salary insight field
+    salary: {
+      type: Number,
+      default: null,
+    },
+    isRemote: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
+
+// Phase 7 — full-text search index
+jobSchema.index({ position: "text", company: "text", workLocation: "text" });
 
 export default mongoose.model("Job", jobSchema);

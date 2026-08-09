@@ -1,0 +1,257 @@
+/* Landing.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+.jl {
+  font-family: 'Inter', sans-serif;
+  background: #F5F7FF;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.jl-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #E8ECF4;
+}
+
+.jl-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1A1D2E;
+  text-decoration: none;
+}
+
+.jl-logo-box {
+  width: 34px; height: 34px;
+  background: #4F46E5;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.jl-nav-links {
+  display: flex; gap: 28px;
+}
+
+.jl-nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6B7280;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.jl-nav-link:hover { color: #1A1D2E; }
+
+.jl-nav-right { display: flex; align-items: center; gap: 10px; }
+
+.jl-login {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 500;
+  color: #4F46E5;
+  background: none; border: none; cursor: pointer;
+  padding: 8px 16px; border-radius: 8px;
+  transition: background 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+.jl-login:hover { background: #EEF2FF; }
+
+.jl-get-started {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 600;
+  color: #fff;
+  background: #4F46E5;
+  border: none; cursor: pointer;
+  padding: 9px 20px; border-radius: 8px;
+  transition: background 0.15s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(79,70,229,0.3);
+  text-decoration: none;
+  display: inline-block;
+}
+.jl-get-started:hover { background: #4338CA; transform: translateY(-1px); }
+
+.jl-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  padding: 80px 40px 60px;
+  max-width: 1100px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.jl-hero-left { flex: 1; }
+
+.jl-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4F46E5;
+  background: #EEF2FF;
+  border: 1px solid #C7D2FE;
+  padding: 5px 12px;
+  border-radius: 100px;
+  margin-bottom: 22px;
+  letter-spacing: 0.2px;
+}
+
+.jl-h1 {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.13;
+  letter-spacing: -1.2px;
+  color: #111827;
+  margin-bottom: 18px;
+}
+
+.jl-h1 .hl { color: #4F46E5; }
+
+.jl-sub {
+  font-size: 15px;
+  color: #6B7280;
+  line-height: 1.75;
+  max-width: 380px;
+  margin-bottom: 32px;
+}
+
+.jl-ctas { display: flex; gap: 12px; align-items: center; }
+
+.jl-cta1 {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 600;
+  color: #fff;
+  background: #4F46E5;
+  border: none; cursor: pointer;
+  padding: 12px 24px; border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(79,70,229,0.35);
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  display: flex; align-items: center; gap: 7px;
+  text-decoration: none;
+}
+.jl-cta1:hover { background: #4338CA; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79,70,229,0.4); }
+
+.jl-cta2 {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; font-weight: 500;
+  color: #374151;
+  background: #fff;
+  border: 1px solid #D1D5DB; cursor: pointer;
+  padding: 12px 22px; border-radius: 10px;
+  transition: border-color 0.15s, background 0.15s;
+  display: flex; align-items: center; gap: 7px;
+  text-decoration: none;
+}
+.jl-cta2:hover { border-color: #4F46E5; color: #4F46E5; background: #F9FAFB; }
+
+.jl-trust {
+  margin-top: 28px;
+  display: flex; align-items: center; gap: 14px;
+}
+
+.jl-avatars { display: flex; }
+.jl-av {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid #fff;
+  margin-right: -8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; color: #fff;
+}
+
+.jl-trust-text { font-size: 12px; color: #6B7280; font-weight: 500; }
+.jl-trust-text strong { color: #111827; }
+
+.jl-hero-right { flex: 0 0 300px; }
+
+.jl-card {
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+
+.jl-card-header {
+  background: #4F46E5;
+  padding: 16px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.jl-card-title { font-size: 13px; font-weight: 600; color: #fff; }
+.jl-card-sub { font-size: 11px; color: rgba(255,255,255,0.65); margin-top: 2px; }
+
+.jl-card-body { padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+
+.jl-app-row {
+  display: flex; align-items: center; gap: 11px;
+  padding: 9px 10px; border-radius: 8px;
+  background: #F9FAFB;
+  border: 1px solid #F3F4F6;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.jl-app-row:hover { background: #EEF2FF; border-color: #C7D2FE; }
+
+.jl-app-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+}
+
+.jl-app-info { flex: 1; }
+.jl-app-name { font-size: 12px; font-weight: 600; color: #111827; }
+.jl-app-role { font-size: 11px; color: #6B7280; }
+
+.jl-app-badge {
+  font-size: 10px; font-weight: 600;
+  padding: 3px 8px; border-radius: 100px;
+}
+
+.badge-applied { background: #EEF2FF; color: #4F46E5; }
+.badge-interview { background: #D1FAE5; color: #065F46; }
+.badge-offer { background: #FEF3C7; color: #92400E; }
+
+.jl-stats {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid #E5E7EB;
+  background: #fff;
+  width: 100%;
+}
+
+.jl-stat {
+  flex: 1; text-align: center;
+  padding: 22px 16px;
+  border-right: 1px solid #E5E7EB;
+}
+.jl-stat:last-child { border-right: none; }
+
+.jl-stat-num {
+  font-size: 24px; font-weight: 800;
+  color: #4F46E5;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.jl-stat-lbl {
+  font-size: 11px; color: #9CA3AF; font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .jl-hero { flex-direction: column; text-align: center; }
+  .jl-sub { margin: 0 auto 32px; }
+  .jl-ctas { justify-content: center; }
+  .jl-trust { justify-content: center; }
+  .jl-nav-links { display: none; }
+  .jl-stats { flex-wrap: wrap; }
+  .jl-stat { min-width: 50%; border-bottom: 1px solid #E5E7EB; }
+}

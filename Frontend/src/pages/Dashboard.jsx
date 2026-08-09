@@ -3,6 +3,8 @@ import { useAppContext } from '../context/AppContext';
 import StatsCards from '../components/StatsCards';
 import Charts from '../components/Charts';
 import GoalTracker from '../components/GoalTracker';
+import RecommendedJobs from '../components/RecommendedJobs';
+import JobAlerts from '../components/JobAlerts';
 
 const Dashboard = () => {
   const { stats, fetchStats } = useAppContext();
@@ -32,7 +34,7 @@ const Dashboard = () => {
         <h1>Dashboard</h1>
         <p>Overview of your job application statistics</p>
       </div>
-      
+
       <GoalTracker />
 
       <StatsCards totalJobs={stats.totalJobs} defaultStats={stats.defaultStats} />
@@ -49,6 +51,10 @@ const Dashboard = () => {
           monthlyApplication={stats.monthlyApplication}
         />
       )}
+
+      {/* ── Phase 2: Smart Job Matching ──────────────────────────────── */}
+      <RecommendedJobs />
+      <JobAlerts />
     </div>
   );
 };

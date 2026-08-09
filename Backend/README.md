@@ -2,6 +2,9 @@
 
 RESTful API for the Job Portal Application built with Node.js and Express.
 
+**Author:** [Arpit Tiwari](https://github.com/Arpit8303)  
+**Email:** arpittiwari1200@gmail.com
+
 ## 📦 Project Structure
 
 ```
@@ -123,3 +126,93 @@ Test endpoints available in `/api/test` routes for development and debugging.
 - Always validate input data
 - Use proper error handling in all routes
 - JWT tokens are required for protected routes
+
+---
+
+## 🔔 Phase 1 — Notifications & Communication
+
+### New Endpoints
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET    | `/api/v1/notifications` | List notifications (paginated) |
+| PATCH  | `/api/v1/notifications/read-all` | Mark all notifications read |
+| PATCH  | `/api/v1/notifications/:id/read` | Mark one notification read |
+| DELETE | `/api/v1/notifications/:id` | Delete a notification |
+| POST   | `/api/v1/interviews` | Schedule an interview |
+| GET    | `/api/v1/interviews` | List user interviews |
+| PATCH  | `/api/v1/interviews/:id` | Update interview |
+| DELETE | `/api/v1/interviews/:id` | Delete interview |
+
+### New Files
+- `utils/emailService.js` — Nodemailer (status change, job alert, interview reminder emails)
+- `models/notificationModel.js` — Notification schema
+- `controllers/notificationController.js` — Notification CRUD + emit helper
+- `routes/notificationRoutes.js` — Notification routes
+- `models/interviewModel.js` — Interview schema
+- `controllers/interviewController.js` — Interview CRUD + reminder scheduling
+- `routes/interviewRoutes.js` — Interview routes
+
+### New Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `SMTP_HOST` | SMTP server host (default: smtp.gmail.com) |
+| `SMTP_PORT` | SMTP server port (default: 587) |
+| `SMTP_USER` | SMTP login email |
+| `SMTP_PASS` | SMTP app password |
+| `CLIENT_URL` | Frontend URL for email links & Socket.io CORS |
+
+### New npm Packages
+
+```bash
+# Backend
+npm install nodemailer socket.io
+
+# Frontend
+npm install socket.io-client
+```
+
+### Real-time Events (Socket.io)
+
+| Event | Direction | Payload |
+|-------|-----------|---------|
+| `join` | Client → Server | `userId` string |
+| `notification:new` | Server → Client | `{ notification, unreadCount }` |
+| `notification:unread_count` | Server → Client | `{ unreadCount }` |
+
+---
+
+## 🎯 Phase 2 — Smart Job Matching
+
+### New Endpoints
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET    | `/api/v1/jobs/recommended` | Personalised recommendations based on skills + history |
+| POST   | `/api/v1/jobs/alerts` | Create a job alert (max 5 per user) |
+| GET    | `/api/v1/jobs/alerts` | List user's job alerts |
+| PATCH  | `/api/v1/jobs/alerts/:id` | Update a job alert |
+| DELETE | `/api/v1/jobs/alerts/:id` | Delete a job alert |
+
+### New Files
+- `utils/resumeParser.js` — regex-based skill extraction (150+ skills), experience years, education
+- `utils/jobAlertCron.js` — node-cron: runs every 30 min, emails/notifies users on new matches
+- `models/jobAlertModel.js` — alert schema with keyword/location/workType/salary filters
+- `controllers/recommendationController.js` — recommendation engine + alert CRUD
+
+### Frontend New Files
+- `src/components/RecommendedJobs.jsx` — skill-match cards with score bar
+- `src/components/JobAlerts.jsx` — alert management panel (create/edit/pause/delete)
+- `src/services/recommendationService.js` — Axios wrapper
+
+### New npm Package
+```bash
+npm install node-cron
+```
+
+### How Recommendations Work
+1. Fetch user's `skills[]` from profile
+2. Extract keywords from past job applications (position titles)
+3. Score all other users' jobs using `scoreJobMatch()` (% of user skills found in job title/company/location)
+4. Return top 20 matches sorted by score

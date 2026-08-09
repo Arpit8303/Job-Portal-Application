@@ -1,80 +1,135 @@
 import { Link } from 'react-router-dom';
-import { MdWork, MdTrendingUp, MdSecurity, MdSpeed } from 'react-icons/md';
-import logoSvg from '../assets/jobLedger-logo.svg';
+import { TbBriefcase, TbRocket, TbBolt, TbLogin, TbFilter } from 'react-icons/tb';
+import './Landing.css';
 
 const Landing = () => {
   return (
-    <div className="landing">
-      {/* Hero Section */}
-      <section className="landing__hero">
-        <div className="landing__hero-bg">
-          <div className="landing__orb landing__orb--1" />
-          <div className="landing__orb landing__orb--2" />
-          <div className="landing__orb landing__orb--3" />
+    <div className="jl">
+      <nav className="jl-nav">
+        <div className="jl-logo">
+          <div className="jl-logo-box">
+            <TbBriefcase style={{ color: '#fff', fontSize: '17px' }} />
+          </div>
+          JobLedger
         </div>
-        <nav className="landing__nav">
-          <h1 className="landing__brand">
-            <img src={logoSvg} alt="JobLedger" className="logo-image" /> JobLedger
+        <div className="jl-nav-links">
+          <a href="#features" className="jl-nav-link" style={{ textDecoration: 'none' }}>Features</a>
+          <a href="#how-it-works" className="jl-nav-link" style={{ textDecoration: 'none' }}>How it works</a>
+          <a href="#pricing" className="jl-nav-link" style={{ textDecoration: 'none' }}>Pricing</a>
+        </div>
+        <div className="jl-nav-right">
+          <Link to="/login" className="jl-login">Login</Link>
+          <Link to="/register" className="jl-get-started">Get Started</Link>
+        </div>
+      </nav>
+
+      <div className="jl-hero">
+        <div className="jl-hero-left">
+          <div className="jl-badge">
+            <TbRocket style={{ fontSize: '12px' }} />
+            Track Your Career Journey
+          </div>
+          <h1 className="jl-h1">
+            Manage Your<br />
+            <span className="hl">Job Applications</span><br />
+            with Ease
           </h1>
-          <div className="landing__nav-links">
-            <Link to="/login" className="btn btn--ghost">Login</Link>
-            <Link to="/register" className="btn btn--primary">Get Started</Link>
-          </div>
-        </nav>
-        <div className="landing__hero-content">
-          <div className="landing__badge">🚀 Track Your Career Journey</div>
-          <h2 className="landing__title">
-            Manage Your <span className="gradient-text">Job Applications</span> with Ease
-          </h2>
-          <p className="landing__subtitle">
-            Stay organized, track every application, and land your dream job. The smartest way to manage your job search journey.
+          <p className="jl-sub">
+            Stay organized, track every application, and land your dream job. The smartest way to manage your job search.
           </p>
-          <div className="landing__cta">
-            <Link to="/register" className="btn btn--primary btn--lg">Start Tracking — It's Free</Link>
-            <Link to="/login" className="btn btn--outline btn--lg">I have an account</Link>
+          <div className="jl-ctas">
+            <Link to="/register" className="jl-cta1">
+              <TbBolt style={{ fontSize: '15px' }} />
+              Start Tracking — It's Free
+            </Link>
+            <Link to="/login" className="jl-cta2">
+              <TbLogin style={{ fontSize: '15px' }} />
+              I have an account
+            </Link>
+          </div>
+          <div className="jl-trust">
+            <div className="jl-avatars">
+              <div className="jl-av" style={{ background: '#4F46E5' }}>AK</div>
+              <div className="jl-av" style={{ background: '#7C3AED' }}>SR</div>
+              <div className="jl-av" style={{ background: '#0891B2' }}>MN</div>
+              <div className="jl-av" style={{ background: '#059669' }}>PV</div>
+            </div>
+            <div className="jl-trust-text"><strong>12,000+</strong> job seekers trust JobLedger</div>
           </div>
         </div>
-      </section>
 
-      {/* Features Section */}
-      <section className="landing__features">
-        <h3 className="landing__section-title">Why JobLedger?</h3>
-        <div className="features-grid">
-          <div className="feature-card">
-            <div className="feature-card__icon" style={{ background: 'rgba(124, 58, 237, 0.12)', color: '#7C3AED' }}>
-              <MdWork />
+        <div className="jl-hero-right">
+          <div className="jl-card">
+            <div className="jl-card-header">
+              <div>
+                <div className="jl-card-title">My Applications</div>
+                <div className="jl-card-sub">6 active this week</div>
+              </div>
+              <TbFilter style={{ color: 'rgba(255,255,255,0.7)', fontSize: '16px', cursor: 'pointer' }} />
             </div>
-            <h4>Job Management</h4>
-            <p>Create, edit, and organize all your job applications in one dashboard.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon" style={{ background: 'rgba(16, 185, 129, 0.12)', color: '#10B981' }}>
-              <MdTrendingUp />
+            <div className="jl-card-body">
+              <div className="jl-app-row">
+                <div className="jl-app-dot" style={{ background: '#4F46E5' }}></div>
+                <div className="jl-app-info">
+                  <div className="jl-app-name">Google</div>
+                  <div className="jl-app-role">SWE Intern</div>
+                </div>
+                <span className="jl-app-badge badge-interview">Interview</span>
+              </div>
+              <div className="jl-app-row">
+                <div className="jl-app-dot" style={{ background: '#059669' }}></div>
+                <div className="jl-app-info">
+                  <div className="jl-app-name">Razorpay</div>
+                  <div className="jl-app-role">Backend Dev</div>
+                </div>
+                <span className="jl-app-badge badge-offer">Offer</span>
+              </div>
+              <div className="jl-app-row">
+                <div className="jl-app-dot" style={{ background: '#9CA3AF' }}></div>
+                <div className="jl-app-info">
+                  <div className="jl-app-name">Zepto</div>
+                  <div className="jl-app-role">Full Stack</div>
+                </div>
+                <span className="jl-app-badge badge-applied">Applied</span>
+              </div>
             </div>
-            <h4>Analytics & Insights</h4>
-            <p>Visualize your progress with beautiful charts and statistics.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon" style={{ background: 'rgba(59, 130, 246, 0.12)', color: '#3B82F6' }}>
-              <MdSpeed />
-            </div>
-            <h4>Fast & Intuitive</h4>
-            <p>Lightning-fast interface with search, filters, and sorting capabilities.</p>
-          </div>
-          <div className="feature-card">
-            <div className="feature-card__icon" style={{ background: 'rgba(249, 115, 22, 0.12)', color: '#F97316' }}>
-              <MdSecurity />
-            </div>
-            <h4>Secure & Private</h4>
-            <p>Your data is protected with JWT authentication and encrypted storage.</p>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Footer */}
-      <footer className="landing__footer">
-        <p>© 2026 JobLedger. Modern recruitment platform for job seekers and recruiters.</p>
-      </footer>
+      <div className="jl-stats">
+        <div className="jl-stat">
+          <div className="jl-stat-num">12k+</div>
+          <div className="jl-stat-lbl">Job seekers</div>
+        </div>
+        <div className="jl-stat">
+          <div className="jl-stat-num">98%</div>
+          <div className="jl-stat-lbl">Stay organized</div>
+        </div>
+        <div className="jl-stat">
+          <div className="jl-stat-num">3x</div>
+          <div className="jl-stat-lbl">Faster callbacks</div>
+        </div>
+        <div className="jl-stat">
+          <div className="jl-stat-num">4.9★</div>
+          <div className="jl-stat-lbl">User rating</div>
+        </div>
+      </div>
+
+      <div id="features" className="jl-section" style={{ padding: '80px 40px', textAlign: 'center', background: '#fff' }}>
+        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#111827' }}>Powerful Features</h2>
+        <p style={{ color: '#6B7280', maxWidth: '600px', margin: '0 auto' }}>Everything you need to manage your job search efficiently.</p>
+      </div>
+      
+      <div id="how-it-works" className="jl-section" style={{ padding: '80px 40px', textAlign: 'center', background: '#F9FAFB' }}>
+        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#111827' }}>How It Works</h2>
+        <p style={{ color: '#6B7280', maxWidth: '600px', margin: '0 auto' }}>Simple steps to land your dream job faster.</p>
+      </div>
+
+      <div id="pricing" className="jl-section" style={{ padding: '80px 40px', textAlign: 'center', background: '#fff' }}>
+        <h2 style={{ fontSize: '32px', marginBottom: '20px', color: '#111827' }}>Simple Pricing</h2>
+        <p style={{ color: '#6B7280', maxWidth: '600px', margin: '0 auto' }}>Free forever for standard users.</p>
+      </div>
     </div>
   );
 };

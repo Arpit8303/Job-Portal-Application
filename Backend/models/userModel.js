@@ -28,6 +28,36 @@ location:{
     type:String,
     default:"India"
 },
+role: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user"
+},
+isPublic: {
+    type: Boolean,
+    default: false
+},
+username: {
+    type: String,
+    default: null,
+    maxlength: 40,
+    // NOTE: uniqueness is checked manually in updatePublicSettings controller
+    // to avoid MongoDB index issues with multiple null/empty values
+},
+googleId: {
+    type: String,
+    default: null,
+    sparse: true,
+},
+twoFactorEnabled: {
+    type: Boolean,
+    default: false
+},
+twoFactorSecret: {
+    type: String,
+    select: false,
+    default: null
+},
 skills: {
     type: [String],
     default: []
@@ -43,7 +73,13 @@ monthlyGoal: {
 },
 {timestamps:true})
 
-//middlewares
+// Pre-save: convert empty string username to null
+userSchema.pre("save", function(next) {
+    if (this.username === "") this.username = null;
+    next();
+});
+
+//middlewares — hash password
 userSchema.pre("save", async function(next){
     if (!this.isModified("password")) return next();
     const salt = await bcrypt.genSalt(10);

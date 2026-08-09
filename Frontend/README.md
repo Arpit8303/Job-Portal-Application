@@ -6,6 +6,9 @@
 [![Vite](https://img.shields.io/badge/Vite-8.0.0-646cff?logo=vite)](https://vitejs.dev)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
+**Author:** [Arpit Tiwari](https://github.com/Arpit8303)  
+**Email:** arpittiwari1200@gmail.com
+
 ## ✨ Features
 
 - 🎯 **Job Management** - Create, edit, and organize all your job applications

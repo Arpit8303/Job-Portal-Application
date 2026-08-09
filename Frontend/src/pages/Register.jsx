@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppContext } from '../context/AppContext';
 import { MdPerson, MdEmail, MdLock, MdVisibility, MdVisibilityOff } from 'react-icons/md';
+import './Auth.css';
+
+const GOOGLE_AUTH_URL = `${import.meta.env.VITE_API_BASE_URL?.replace('/api/v1', '')}/api/v1/auth/google`;
 
 const Register = () => {
   const { registerUser } = useAppContext();
@@ -13,20 +16,20 @@ const Register = () => {
   const [apiError, setApiError] = useState('');
 
   const validate = () => {
-    const newErrors = {};
+    const e = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email) newErrors.email = 'Email is required';
-    else if (!emailRegex.test(formData.email)) newErrors.email = 'Invalid email format';
-    if (!formData.password) newErrors.password = 'Password is required';
-    else if (formData.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    if (!formData.name.trim()) e.name = 'Name is required';
+    if (!formData.email) e.email = 'Email is required';
+    else if (!emailRegex.test(formData.email)) e.email = 'Invalid email format';
+    if (!formData.password) e.password = 'Password is required';
+    else if (formData.password.length < 6) e.password = 'Minimum 6 characters';
+    setErrors(e);
+    return Object.keys(e).length === 0;
   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (errors[e.target.name]) setErrors({ ...errors, [e.target.name]: '' });
+  const handleChange = (ev) => {
+    setFormData({ ...formData, [ev.target.name]: ev.target.value });
+    if (errors[ev.target.name]) setErrors({ ...errors, [ev.target.name]: '' });
     if (apiError) setApiError('');
   };
 
@@ -37,86 +40,124 @@ const Register = () => {
     setApiError('');
     const result = await registerUser(formData.name, formData.email, formData.password);
     setIsLoading(false);
-    if (result?.success) {
-      navigate('/dashboard');
-    } else {
-      setApiError(result?.message || 'Registration failed');
-    }
+    if (result?.success) navigate('/dashboard');
+    else setApiError(result?.message || 'Registration failed');
   };
 
   return (
     <div className="auth-page">
-      <div className="auth-page__bg">
-        <div className="landing__orb landing__orb--1" />
-        <div className="landing__orb landing__orb--2" />
-      </div>
-      <div className="auth-card">
-        <div className="auth-card__header">
-          <h1 className="auth-card__brand"><span className="logo-icon">�</span> JobLedger</h1>
-          <h2>Create your account</h2>
-          <p>Start tracking your job applications today</p>
+      <div className="auth-split">
+
+        {/* ── Left purple panel ── */}
+        <div className="auth-left">
+          <div className="auth-left__content">
+            <div className="auth-left__logo">
+              <div className="auth-left__logo-icon">💼</div>
+              <span className="auth-left__logo-text">JobLedger</span>
+            </div>
+            <h2 className="auth-left__heading">Already<br />a Member?</h2>
+            <p className="auth-left__sub">
+              Sign in to continue tracking your applications and get personalised AI career advice.
+            </p>
+            <Link to="/login" style={{ display: 'inline-block', marginTop: '24px', padding: '10px 24px', background: 'rgba(255,255,255,0.15)', borderRadius: '50px', color: '#fff', fontSize: '14px', fontWeight: '600', textDecoration: 'none', backdropFilter: 'blur(10px)', transition: 'background 0.2s' }}>
+              Sign In
+            </Link>
+          </div>
         </div>
-        {apiError && <div className="alert alert--error">{apiError}</div>}
-        <form className="auth-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Name</label>
-            <div className="input-wrapper">
-              <MdPerson className="input-icon" />
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Enter your name"
-                className={errors.name ? 'input--error' : ''}
-              />
+
+        {/* ── Right dark form panel ── */}
+        <div className="auth-right">
+          <h1>Sign Up</h1>
+
+          {apiError && <div className="auth-alert">{apiError}</div>}
+
+          <form onSubmit={handleSubmit}>
+            {/* Name */}
+            <div className="auth-field">
+              <div className="auth-input-wrap">
+                <input
+                  type="text"
+                  id="reg-name"
+                  name="name"
+                  className={`auth-input${errors.name ? ' auth-input--error' : ''}`}
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Username"
+                  autoComplete="name"
+                />
+                <MdPerson />
+              </div>
+              {errors.name && <span className="auth-field-error">{errors.name}</span>}
             </div>
-            {errors.name && <span className="form-error">{errors.name}</span>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <div className="input-wrapper">
-              <MdEmail className="input-icon" />
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email"
-                className={errors.email ? 'input--error' : ''}
-              />
+
+            {/* Email */}
+            <div className="auth-field">
+              <div className="auth-input-wrap">
+                <input
+                  type="email"
+                  id="reg-email"
+                  name="email"
+                  className={`auth-input${errors.email ? ' auth-input--error' : ''}`}
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Email"
+                  autoComplete="email"
+                />
+                <MdEmail />
+              </div>
+              {errors.email && <span className="auth-field-error">{errors.email}</span>}
             </div>
-            {errors.email && <span className="form-error">{errors.email}</span>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <div className="input-wrapper">
-              <MdLock className="input-icon" />
-              <input
-                type={showPassword ? 'text' : 'password'}
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Min. 6 characters"
-                className={errors.password ? 'input--error' : ''}
-              />
-              <button type="button" className="input-toggle" onClick={() => setShowPassword(!showPassword)}>
-                {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
-              </button>
+
+            {/* Password */}
+            <div className="auth-field">
+              <div className="auth-input-wrap">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="reg-password"
+                  name="password"
+                  className={`auth-input${errors.password ? ' auth-input--error' : ''}`}
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Password"
+                  autoComplete="new-password"
+                />
+                <button type="button" className="auth-eye" onClick={() => setShowPassword(!showPassword)}>
+                  {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
+                </button>
+                <MdLock style={{ right: '40px' }} />
+              </div>
+              {errors.password && <span className="auth-field-error">{errors.password}</span>}
             </div>
-            {errors.password && <span className="form-error">{errors.password}</span>}
-          </div>
-          <button type="submit" className="btn btn--primary btn--full" disabled={isLoading}>
-            {isLoading ? <span className="spinner" /> : null}
-            {isLoading ? 'Creating account...' : 'Create Account'}
+
+            <button type="submit" className="auth-btn" disabled={isLoading} id="register-submit">
+              {isLoading && <span className="auth-spinner" />}
+              {isLoading ? 'Creating Account…' : 'Sign Up'}
+            </button>
+          </form>
+
+          {/* Divider */}
+          <div className="auth-divider"><span>or continue with</span></div>
+
+          {/* Google OAuth */}
+          <button
+            type="button"
+            className="auth-google-btn"
+            id="register-google"
+            onClick={() => window.location.href = GOOGLE_AUTH_URL}
+          >
+            <svg className="auth-google-icon" viewBox="0 0 24 24">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+            Sign up with Google
           </button>
-        </form>
-        <p className="auth-card__footer">
-          Already have an account? <Link to="/login">Sign in</Link>
-        </p>
+
+          <p className="auth-footer">
+            Already have an account?<Link to="/login">Sign in</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

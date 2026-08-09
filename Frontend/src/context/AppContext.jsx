@@ -173,10 +173,10 @@ export function AppProvider({ children }) {
 
   const updateProfile = useCallback(async (userData) => {
     try {
-      const data = await authService.updateProfile(userData);
-      localStorage.setItem(TOKEN_KEY, data.token);
-      localStorage.setItem('jobPortalUser', JSON.stringify(data.user));
-      dispatch({ type: ActionTypes.SET_AUTH, payload: { token: data.token, user: data.user } });
+      const res = await authService.updateProfile(userData);
+      localStorage.setItem(TOKEN_KEY, res.data.token);
+      localStorage.setItem('jobPortalUser', JSON.stringify(res.data.user));
+      dispatch({ type: ActionTypes.SET_AUTH, payload: { token: res.data.token, user: res.data.user } });
       toast.success('Profile updated successfully!');
       return { success: true };
     } catch (error) {
